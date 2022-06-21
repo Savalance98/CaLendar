@@ -31,6 +31,7 @@ Elements getMonthContent(int mn, int yn){
  * @param yn
  * @param reader
  * @return отображает список праздников
+ * getHolidaysFromFile - получает праздник из файла
  */
 Elements getHolidaysContent(int mn, int yn, FileHandler &reader){
     Elements holidaysContent;
