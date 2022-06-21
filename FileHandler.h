@@ -29,7 +29,7 @@ public:
 	FileHandler(const string& filepath, int mode);
 	~FileHandler();
     void putHolidayToFile(int date, int month, int year, const string& holiday);
-    vector<string> getHolidaysFromFile(int month, int year);
+    vector<string> getHolidaysFromFile(int month, int year,bool defolt);
     void deleteHoliday(int day, int month, int year);
     void close();
 
