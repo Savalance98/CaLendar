@@ -10,7 +10,12 @@
 using namespace ftxui;
 using namespace std;
 
-
+/**
+ * Работа с месяцем
+ * @param mn месяц
+ * @param yn
+ * @return элемент месяца
+ */
 Elements getMonthContent(int mn, int yn){
     Elements monthContent;
 
@@ -20,7 +25,13 @@ Elements getMonthContent(int mn, int yn){
     }
     return monthContent;
 }
-
+/**
+ *Работа с праздниками
+ * @param mn
+ * @param yn
+ * @param reader
+ * @return отображает список праздников
+ */
 Elements getHolidaysContent(int mn, int yn, FileHandler &reader){
     Elements holidaysContent;
     vector<string> holidays;
