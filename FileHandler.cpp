@@ -33,7 +33,9 @@ FileHandler::~FileHandler() {
     if(mode == 3){
     }
 }
-
+/*
+ * закрывает файл
+ */
 void FileHandler::close(){
     if (mode == 1) {
         this->file.close();
@@ -43,7 +45,9 @@ void FileHandler::close(){
     if(mode == 3){
     }
 }
-
+/*
+ * добавляет праздник в файл
+ */
 void FileHandler::putHolidayToFile(int date, int month, int year, const string& holiday) {
     if (!outFile.is_open()) {
         throw "File is not opened!";
@@ -175,7 +179,9 @@ vector<string> FileHandler::getHolidaysFromFile(int month, int year, bool defolt
         holidays.push_back("Нет праздников");
     return holidays;
 }
-
+/*
+ * удаляет праздник из файла
+ */
 void FileHandler::deleteHoliday(int day, int month, int year) {
     file = ifstream (filepath);
     vector<string> ss = vector<string>();
