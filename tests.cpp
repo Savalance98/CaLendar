@@ -19,7 +19,7 @@ TEST_CASE("Correct read holiday from file"){
     str << "04.04.2002 holiday";
     str.close();
     FileHandler f("test.txt", FileHandler::IN_MODE);
-    vector<string> s = f.getHolidaysFromFile(4,2002);
+    vector<string> s = f.getHolidaysFromFile(4,2002,false);
     CHECK(s[0] == "04.04.2002 holiday");
 }
 
@@ -30,7 +30,7 @@ TEST_CASE("Correct read many holidays from file"){
     }
     str.close();
     FileHandler f("test.txt", FileHandler::IN_MODE);
-    vector<string> s = f.getHolidaysFromFile(4,2002);
+    vector<string> s = f.getHolidaysFromFile(4,2002,false);
     for(int i = 0; i < 31-1; i++) {
         CHECK(s[i] == (to_string(i+1) + ".04.2002 holiday"));
     }
@@ -59,7 +59,7 @@ TEST_CASE("Correct write and read different holidays from file"){
     }
     f.close();
     FileHandler fi("test.txt", FileHandler::IN_MODE);
-    auto s = fi.getHolidaysFromFile(1, 2022);
+    auto s = fi.getHolidaysFromFile(1, 2022,false);
     for(int i = 0; i < s.size(); i++){
         CHECK("0" + to_string(i) + "." + "01.2022 " + h[i] == s[i]);
     }
@@ -76,10 +76,10 @@ TEST_CASE("Correct get by month and year"){
     f.putHolidayToFile(10, 7, 2023, "holiday5");
     f.close();
     FileHandler fi("test.txt", FileHandler::IN_MODE);
-    auto s1 = fi.getHolidaysFromFile(1, 2020);
-    auto s2 = fi.getHolidaysFromFile(3, 2020);
-    auto s3 = fi.getHolidaysFromFile(1, 2021);
-    auto s4 = fi.getHolidaysFromFile(7, 2023);
+    auto s1 = fi.getHolidaysFromFile(1, 2020,false);
+    auto s2 = fi.getHolidaysFromFile(3, 2020,false);
+    auto s3 = fi.getHolidaysFromFile(1, 2021,false);
+    auto s4 = fi.getHolidaysFromFile(7, 2023,false);
     CHECK("10.01.2020 holiday" == s1[0]);
     CHECK("11.01.2020 holiday1" == s1[1]);
     CHECK("10.01.2020 holiday2" == s1[2]);
@@ -105,19 +105,4 @@ TEST_CASE("Correct names of months"){
     for(int i = 0; i < 12; i++){
         CHECK(correctNames[i] + " " + to_string(year) == Month(i+1, year).getName());
     }
-}
-
-TEST_CASE("Correct delete"){
-    FileHandler f("test.txt", FileHandler::OUT_REWRITE_MODE);
-    f.putHolidayToFile(10, 1, 2020, "holiday");
-    f.putHolidayToFile(11, 1, 2020, "holiday1");
-    f.putHolidayToFile(10, 1, 2020, "holiday2");
-    f.putHolidayToFile(10, 3, 2020, "holiday3");
-    f.putHolidayToFile(10, 1, 2021, "holiday4");
-    f.putHolidayToFile(10, 7, 2023, "holiday5");
-    f.close();
-
-    FileHandler f1("test.txt", FileHandler::IN_OUT_MODE);
-    f1.deleteHoliday(10,1,2020);
-    f1.close();
 }
