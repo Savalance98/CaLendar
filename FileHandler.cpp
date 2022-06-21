@@ -68,68 +68,70 @@ void FileHandler::putHolidayToFile(int date, int month, int year, const string& 
     outFile << s_date << "." << s_month << "." << year << " " << holiday << endl;
 }
 
-vector<string> FileHandler::getHolidaysFromFile(int month, int year){
+vector<string> FileHandler::getHolidaysFromFile(int month, int year, bool defolt){
     if (!file.is_open()) {
         throw "File is not opened!";
     }
     vector<string> holidays;
-    switch (month) {
-        case 1:
-            holidays.push_back("01.01." + to_string(year) + " Новый год!");
-            holidays.push_back("06.01." + to_string(year) + " Сочельник");
-            holidays.push_back("14.01." + to_string(year) + " Старый новый год");
-            holidays.push_back("25.01." + to_string(year) + " День студента");
-            break;
-        case 2:
-            holidays.push_back("14.02." + to_string(year) + " День святого валентина");
-            holidays.push_back("23.02." + to_string(year) + " День защитника отечества");
-            break;
-        case 3:
-            holidays.push_back("01.03." + to_string(year) + " Всемирный день кошек");
-            holidays.push_back("08.03." + to_string(year) + " Международный женский день");
-            holidays.push_back("21.03." + to_string(year) + " День Земли");
-            break;
-        case 4:
-            holidays.push_back("01.04." + to_string(year) + " День смеха");
-            holidays.push_back("05.04." + to_string(year) + " День геолога");
-            holidays.push_back("12.04." + to_string(year) + " Пасха");
-            break;
-        case 5:
-            holidays.push_back("01.05." + to_string(year) + " Праздник весны и труда");
-            holidays.push_back("07.05." + to_string(year) + " День радио");
-            holidays.push_back("25.05." + to_string(year) + " День филолога");
-            holidays.push_back("28.05." + to_string(year) + " День пограничника");
-            break;
-        case 6:
-            holidays.push_back("01.06." + to_string(year) + " День защиты детей");
-            holidays.push_back("12.06." + to_string(year) + " День независимости России");
-            break;
-        case 7:
-            holidays.push_back("03.07." + to_string(year) + " День ГАИ");
-            holidays.push_back("07.07." + to_string(year) + " Иван Купала");
-            holidays.push_back("16.07." + to_string(year) + " День металлурга");
-            break;
-        case 8:
-            holidays.push_back("01.08." + to_string(year) + " День инкассатора");
-            holidays.push_back("08.08." + to_string(year) + " День рождения альпинизма");
-            break;
-        case 9:
-            holidays.push_back("01.09." + to_string(year) + " День знаний");
-            holidays.push_back("02.09." + to_string(year) + " День российской гвардии");
-            holidays.push_back("27.09." + to_string(year) + " День туризма");
-            break;
-        case 10:
-            holidays.push_back("01.10." + to_string(year) + " День музыки");
-            holidays.push_back("05.10." + to_string(year) + " День учителя");
-            break;
-        case 11:
-            holidays.push_back("04.11." + to_string(year) + " День народного единства");
-            holidays.push_back("28.11." + to_string(year) + " День матери");
-            break;
-        case 12:
-            holidays.push_back("10.12." + to_string(year) + " День прав человека");
-            holidays.push_back("22.12." + to_string(year) + " День энергетика");
-            break;
+    if (defolt){
+        switch (month) {
+            case 1:
+                holidays.push_back("01.01." + to_string(year) + " Новый год!");
+                holidays.push_back("06.01." + to_string(year) + " Сочельник");
+                holidays.push_back("14.01." + to_string(year) + " Старый новый год");
+                holidays.push_back("25.01." + to_string(year) + " День студента");
+                break;
+            case 2:
+                holidays.push_back("14.02." + to_string(year) + " День святого валентина");
+                holidays.push_back("23.02." + to_string(year) + " День защитника отечества");
+                break;
+            case 3:
+                holidays.push_back("01.03." + to_string(year) + " Всемирный день кошек");
+                holidays.push_back("08.03." + to_string(year) + " Международный женский день");
+                holidays.push_back("21.03." + to_string(year) + " День Земли");
+                break;
+            case 4:
+                holidays.push_back("01.04." + to_string(year) + " День смеха");
+                holidays.push_back("05.04." + to_string(year) + " День геолога");
+                holidays.push_back("12.04." + to_string(year) + " Пасха");
+                break;
+            case 5:
+                holidays.push_back("01.05." + to_string(year) + " Праздник весны и труда");
+                holidays.push_back("07.05." + to_string(year) + " День радио");
+                holidays.push_back("25.05." + to_string(year) + " День филолога");
+                holidays.push_back("28.05." + to_string(year) + " День пограничника");
+                break;
+            case 6:
+                holidays.push_back("01.06." + to_string(year) + " День защиты детей");
+                holidays.push_back("12.06." + to_string(year) + " День независимости России");
+                break;
+            case 7:
+                holidays.push_back("03.07." + to_string(year) + " День ГАИ");
+                holidays.push_back("07.07." + to_string(year) + " Иван Купала");
+                holidays.push_back("16.07." + to_string(year) + " День металлурга");
+                break;
+            case 8:
+                holidays.push_back("01.08." + to_string(year) + " День инкассатора");
+                holidays.push_back("08.08." + to_string(year) + " День рождения альпинизма");
+                break;
+            case 9:
+                holidays.push_back("01.09." + to_string(year) + " День знаний");
+                holidays.push_back("02.09." + to_string(year) + " День российской гвардии");
+                holidays.push_back("27.09." + to_string(year) + " День туризма");
+                break;
+            case 10:
+                holidays.push_back("01.10." + to_string(year) + " День музыки");
+                holidays.push_back("05.10." + to_string(year) + " День учителя");
+                break;
+            case 11:
+                holidays.push_back("04.11." + to_string(year) + " День народного единства");
+                holidays.push_back("28.11." + to_string(year) + " День матери");
+                break;
+            case 12:
+                holidays.push_back("10.12." + to_string(year) + " День прав человека");
+                holidays.push_back("22.12." + to_string(year) + " День энергетика");
+                break;
+        }
     }
     file.clear();
     file.seekg(0L, std::ios_base::beg);
