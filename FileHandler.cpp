@@ -3,7 +3,11 @@
 bool equal(std::string first, std::string second){
     return std::equal(first.begin(), first.end(), second.begin(), second.end());
 }
-
+/**
+ * Конструктор FileHandler
+ * @param filepath путь к файлу
+ * @param mode переменная для определения пути
+ */
 FileHandler::FileHandler(const string& filepath, int mode) {
     this->mode = mode;
     this->filepath = filepath;
