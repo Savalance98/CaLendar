@@ -2,7 +2,11 @@
 #include <cmath>
 #include <string>
 #include <vector>
-
+/**
+ * Функция вычисляет длину строки
+ * @param str
+ * @return длина строки
+ */
 size_t strlen(std::string str) {
     size_t size = 0;
     for (auto byte : str) {
@@ -10,7 +14,11 @@ size_t strlen(std::string str) {
     }
     return size;
 }
-
+/**
+ *Класс Месяц
+ * @param monthNumber номер месяца
+ * @param year год
+ */
 Month::Month(int monthNumber, int year) {
 	this->monthNumber = monthNumber;
 	setAmountOfDays(year);
@@ -18,17 +26,30 @@ Month::Month(int monthNumber, int year) {
 	setDays(year);
     addYearToName(year);
 }
-
+/**
+ *Добавляет год  к строке name
+ * @param year год
+ */
 void Month::addYearToName(int year) {
 	name += " ";
 	name += std::to_string(year);
 }
-
+/**
+ *Узнает век
+ * @param year год
+ * @return код года
+ */
 int Month::getYearCode(int year) {
 	int century = year / 100;
 	return ((6 - (century % 4) * 2)+year%100+(year%100)/4)%7;
 }
-
+/**
+ *Узнает день недели
+ * @param day день
+ * @param year год
+ * @param yearCode год
+ * @return номер дня недели
+ */
 int Month::getWeekDay(int day, int year, int yearCode){
 	int ans = (day + monthCode + yearCode)%7-2;
 	if (ans < 0)
@@ -37,7 +58,10 @@ int Month::getWeekDay(int day, int year, int yearCode){
 		ans--;
 	return ans;
 }
-
+/**
+ *Расположение дня в календаре
+ * @param year год
+ */
 void Month::setDays(int year) {
 	for (int i = 0; i < amountOfStrings; i++) {
 		for (int j = 0; j < weekSize; j++) {
@@ -54,7 +78,10 @@ void Month::setDays(int year) {
 		first = 0;
 	}
 }
-
+/**
+ *Вычисляет количество дней
+ * @param year год
+ */
 void Month::setAmountOfDays(int year) {
 	this->amountOfDays = 28 + ((int)(monthNumber + floor(monthNumber / 8)) % 2) 
 		+ 2 % monthNumber + floor((1 + (1 - (year % 4 + 2) % (year % 4 + 1)) * ((year % 100 + 2) % (year % 100 + 1))
@@ -62,7 +89,11 @@ void Month::setAmountOfDays(int year) {
 		- floor(((1 - (year % 4 + 2) % (year % 4 + 1)) * ((year % 100 + 2) % (year % 100 + 1))
 			+ (1 - (year % 400 + 2) % (year % 400 + 1))) / monthNumber);
 }
-
+/**
+ *Перезагрузка оператора = для переопредления месяца
+ * @param other
+ * @return
+ */
 Month& Month::operator=(const Month& other) {
 	if (this != &other) {
 		monthNumber = other.monthNumber;
@@ -122,6 +153,7 @@ void Month::setName() {
 			name = DECEMBER;
 			monthCode = 6;
 			break;
+
 	}
 }
 
@@ -136,6 +168,7 @@ std::string Month::getName() {
 int Month::getMonthNumber() {
 	return monthNumber;
 }
+
 
 std::vector<std::string> Month::toString(){
     std::vector<std::string> monthStrings;
